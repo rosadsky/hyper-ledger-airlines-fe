@@ -1,23 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { Component } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Home from './components/home';
+import NavBar from './components/navbar';
+import EconFly from './components/econfly';
+import BusiFly from './components/busyfly';
+import GladlyAbroad from './components/gladlyabroad';
+import Client from './components/client';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar />
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/econfly" element={<EconFly />} />
+        <Route exact path="/busifly" element={<BusiFly />} />
+        <Route exact path="/gladlyabroad" element={<GladlyAbroad />} />
+        <Route exact path="/client" element={<Client />} />
+    </Routes>  
     </div>
   );
 }
