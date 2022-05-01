@@ -98,7 +98,8 @@ function Client(){
         setFlightInfo(flight_info)
         setPlaneSeats(seatsArray);
         /*
-        Axios.get("http://localhost:8000/busifly/getflight", {}).then((response) => {
+        Axios.get("http://localhost:8000/client/getflight", { params: { id: flightID }})
+        .then((response) => {
            //TODO setFlightInfo()
         })
         */
@@ -114,7 +115,8 @@ function Client(){
 
         setAllFlightInfo(FLIGHT_INFO_TEST_DATA)
     }
-
+    
+    // AGENCY/CLIENT FUNCTIONS 
 
     const sendReserveSeats = () => {
         Axios.post('http://localhost:8000/client/reserveseats', {
@@ -134,6 +136,8 @@ function Client(){
           console.log('Reserve seats send to backend')
       })
     }
+
+    // END  AGENCY/CLIENT FUNCTIONS 
 
     const navigate = useNavigate();
     const routeToHome = () =>{ 

@@ -110,7 +110,8 @@ function BusiFly(){
         setFlightInfo(flight_info)
         setPlaneSeats(seatsArray);
         /*
-        Axios.get("http://localhost:8000/busifly/getflight", {}).then((response) => {
+        Axios.get("http://localhost:8000/busifly/getflight", { params: { id: flightID }})
+        .then((response) => {
            //TODO setFlightInfo()
         })
         */
@@ -124,6 +125,9 @@ function BusiFly(){
 
         setAllFlightInfo(FLIGHT_INFO_TEST_DATA)
     }
+
+
+    // AIRLINE FUNCTIONS 
 
     const sendCreateFlight = () => {
         Axios.post('http://localhost:8000/busifly/createflight', {
@@ -143,6 +147,8 @@ function BusiFly(){
           console.log('Book seats send to backend');
       })
     }
+
+    // END AIRLINE FUNCTIONS 
 
     const navigate = useNavigate();
     const routeToHome = () =>{ 

@@ -33,7 +33,6 @@ function GladlyAbroad(){
     const [reservationNr, setReservationNr] = useState("");
     const [passportsIDs, setPassportsIDs] = useState("");
 
-
     //view plane useStates
     const [planeSeats,setPlaneSeats] = useState([]);
     const [takenSeats, setTakeSeats] = useState();
@@ -68,7 +67,6 @@ function GladlyAbroad(){
 
     const getFlight = () => {
         //TMP
-
         let flight_info = [{
             allPlaces: "12",
             availablePlaces: "3",
@@ -97,7 +95,8 @@ function GladlyAbroad(){
         setFlightInfo(flight_info)
         setPlaneSeats(seatsArray);
         /*
-        Axios.get("http://localhost:8000/busifly/getflight", {}).then((response) => {
+        Axios.get("http://localhost:8000/gladlyabroad/getflight", { params: { id: flightID }})
+        .then((response) => {
            //TODO setFlightInfo()
         })
         */
@@ -114,7 +113,7 @@ function GladlyAbroad(){
         setAllFlightInfo(FLIGHT_INFO_TEST_DATA)
     }
 
-    // agency functions
+    // AGENCY/CLIENT FUNCTIONS 
     
     const sendReserveSeats = () => {
         Axios.post('http://localhost:8000/gladlyabroad/reserveseats', {
@@ -134,6 +133,8 @@ function GladlyAbroad(){
           console.log('Reserve seats send to backend')
       })
     }
+
+    // END AGENCY/CLIENT FUNCTIONS 
 
     const navigate = useNavigate();
     const routeToHome = () =>{ 

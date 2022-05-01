@@ -104,7 +104,8 @@ function EconFly(){
          setFlightInfo(flight_info)
          setPlaneSeats(seatsArray);
         /*
-        Axios.get("http://localhost:8000/busifly/getflight", {}).then((response) => {
+        Axios.get("http://localhost:8000/econfly/getflight", { params: { id: flightID }})
+        .then((response) => {
            //TODO setFlightInfo()
         })
         */
@@ -120,6 +121,8 @@ function EconFly(){
 
         setAllFlightInfo(FLIGHT_INFO_TEST_DATA)
     }
+
+    // AIRLINE FUNCTIONS 
 
     const sendCreateFlight = () => {
       
@@ -140,6 +143,8 @@ function EconFly(){
           console.log('Book seats send to backend')
       })
     }
+
+    // END AIRLINE FUNCTIONS 
 
     const navigate = useNavigate();
     const routeToHome = () =>{ 
