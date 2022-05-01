@@ -11,7 +11,6 @@ import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
 
 function BusiFly(){
 
-
     const FLIGHT_INFO_TEST_DATA = [{
         flightNr: "123456",
         flyFrom: "VIENNA",
@@ -45,6 +44,8 @@ function BusiFly(){
     const [flightInfo,setFlightInfo] = useState({});
     const [allFlightInfo,setAllFlightInfo] = useState([])
 
+
+    // handlers 
     const handleFlyFrom = (event) => {
         setFlyFrom(event.target.value);
     };
@@ -65,7 +66,7 @@ function BusiFly(){
         setReservationNr(event.target.value);
     };
 
-    // plane seats 
+    // plane seats  handlers 
     const handlePlaneSeats = (event) => {
         setPlaneSeats([])
     }
@@ -74,15 +75,20 @@ function BusiFly(){
         setFlightID(event.target.value)
     }
 
+    // axios functions
+
     const getFlight = () => {
         //TMP
         let axiosResponse = 90;
         let seatsArray = [];
         let tmpSeatArray = [];
+
+        // generate array with numbers to n 
         for(let j = 0; j < axiosResponse; j++){
             tmpSeatArray.push(j);
         }
 
+        //generate 2D array for fancy render :) 
         for(let i = 0; i < axiosResponse; i+=6){
             seatsArray.push(tmpSeatArray.slice(i,i+6))
         }
@@ -95,8 +101,18 @@ function BusiFly(){
         */
     }
 
+    const getAllFlights = () => {
+
+        /*
+        Axios.get("http://localhost:8000/busifly/getallflights").then((response) => {
+           //TODO setAllFlightInfo()
+        })
+        */
+
+        setAllFlightInfo(FLIGHT_INFO_TEST_DATA)
+    }
+
     const sendCreateFlight = () => {
-      
         Axios.post('http://localhost:8000/busifly/createflight', {
           flyTo: flyTo,
           flyFrom: flyFrom,
@@ -113,10 +129,6 @@ function BusiFly(){
       }).then(() =>{
           console.log('Book seats send to backend')
       })
-    }
-
-    const getAllFlights = () => {
-        setAllFlightInfo(FLIGHT_INFO_TEST_DATA)
     }
 
     return(
@@ -217,7 +229,6 @@ function BusiFly(){
                             )
                         })}
 
-
                         <h1>Flight view</h1>
                         <div className="fields"> 
                             <TextField
@@ -235,7 +246,6 @@ function BusiFly(){
                                     Show plane seats
                             </Button>
                          </div>
-
 
                         {planeSeats.slice(0,planeSeats.length).map((val,index)=>{
                             return(
