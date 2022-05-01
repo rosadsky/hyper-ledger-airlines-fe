@@ -71,6 +71,25 @@ body {
 
 }
 
+.home-grid{
+  display: flex;
+  padding-left: 10%;
+  padding-right: 10%;
+
+
+}
+
+.home-box {
+  border-radius: 4px;
+  border-color: #004c98;
+  border-style: solid;
+  border-width: 1px;
+  margin-top: 10px;
+  margin-right: 30px;
+  margin-left: 30px;
+  width: 380px;
+}
+
 .row-child {
   width: 70px;
   margin: auto;

@@ -1,6 +1,6 @@
 
 import { useNavigate } from 'react-router-dom'
-import {Button} from '@mui/material'
+import {Button, Box} from '@mui/material'
 
 function Home(){
 
@@ -69,23 +69,32 @@ function Home(){
     return(
         <div className="App">
              <h1>Select login user</h1>
-
-
-             <Button variant="outlined" sx={{m:1}} onClick={routeToBusiFlyAndLogin}>
-                 BusiFly 
-             </Button>
-
-             <Button variant="outlined" sx={{m:1}}  onClick={routeToEconFlyAndLogin}>
-                 EconFly 
-             </Button>
-
-             <Button variant="outlined" sx={{m:1}} onClick={routeToGladlyAbroadAndLogin}>
-                 GladlyAbroad 
-             </Button>
-
-             <Button variant="outlined" sx={{m:1}} onClick={routeToClientAndLogin}>
-                 Client 
-             </Button>
+            <div className='home-grid'> 
+                <div className="home-box">
+                <Box component="img" sx={{ height: 250,width: 250 }}src="https://cdn.discordapp.com/attachments/955541292115431484/970345370121044069/18-184179_cute-cats-memes-cdsat-crying-meme-png-transparent.png.png"/>
+                    <Button variant="contained" sx={{m:1}} onClick={routeToBusiFlyAndLogin}>
+                        BusiFly 
+                    </Button>
+                </div>
+                <div className="home-box">
+                    <Box component="img" sx={{ height: 250,width: 250 }}src="https://cdn.discordapp.com/attachments/955541292115431484/970345370427207790/219-2199811_meme-cats-freetoedit-cat-meme-sticker-png-transparent.png"/>
+                    <Button variant="contained" sx={{m:1}}  onClick={routeToEconFlyAndLogin}>
+                        EconFly 
+                    </Button>
+                </div>
+                <div className="home-box">
+                    <Box component="img" sx={{ height: 250,width: 250 }}src="https://cdn.discordapp.com/attachments/955541292115431484/970345370708242532/280-2807229_meme-cat-hd-png-download.png"/>
+                    <Button variant="contained" sx={{m:1}} onClick={routeToGladlyAbroadAndLogin}>
+                        GladlyAbroad 
+                    </Button>
+                </div>
+                <div className="home-box">
+                    <Box component="img" sx={{ height: 250,width: 250 }}src="https://cdn.discordapp.com/attachments/955541292115431484/970345370959876106/png-transparent-redbubble-sdpolite-cat-meme-funny-cat-meme-thumbnail.png"/>
+                    <Button variant="contained" sx={{m:1}} onClick={routeToClientAndLogin}>
+                        Client 
+                    </Button>
+                </div>
+             </div>
         </div>
     )
   
