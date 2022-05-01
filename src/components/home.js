@@ -68,7 +68,7 @@ function Home(){
     const navigate = useNavigate();
     return(
         <div className="App">
-             <h1>Select login user</h1>
+             <h1>Please select user</h1>
             <div className='home-grid'> 
                 <div className="home-box">
                 <Box component="img" sx={{ height: 250,width: 250 }}src="https://cdn.discordapp.com/attachments/955541292115431484/970345370121044069/18-184179_cute-cats-memes-cdsat-crying-meme-png-transparent.png.png"/>

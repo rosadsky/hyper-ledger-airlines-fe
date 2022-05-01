@@ -1,8 +1,8 @@
 import { Button, TextField, Box } from "@mui/material";
 import React, {useEffect, useState} from 'react';
+import { useNavigate } from 'react-router-dom'
 import SendIcon from '@mui/icons-material/Send';
 import Axios from 'axios'
-import EventSeatIcon from '@mui/icons-material/EventSeat';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
 
@@ -136,6 +136,11 @@ function BusiFly(){
           console.log('Book seats send to backend')
       })
     }
+    const navigate = useNavigate();
+    const routeToHome = () =>{ 
+        let path = `/`; 
+        navigate(path);
+    }
 
     return(
         <div className="App">
@@ -143,8 +148,12 @@ function BusiFly(){
                 <div className="split-child">
                     <div className="app-body">
                         <h1> BusiFly Dashboard</h1>
+                        <div className="fields">
+                            <Button variant="outlined" sx={{m:1, width: 400}} onClick={routeToHome}>
+                                Log out 
+                            </Button>
+                        </div>
                         <h2>Create flight</h2>
-                    
                         <div className="fields">  
                             <TextField
                                 color="primary" focused 

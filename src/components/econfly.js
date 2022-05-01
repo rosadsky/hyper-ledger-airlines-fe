@@ -4,6 +4,7 @@ import SendIcon from '@mui/icons-material/Send';
 import Axios from 'axios'
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
+import { useNavigate } from 'react-router-dom'
 
 
 function EconFly(){
@@ -126,12 +127,23 @@ function EconFly(){
       })
     }
 
+    const navigate = useNavigate();
+    const routeToHome = () =>{ 
+        let path = `/`; 
+        navigate(path);
+    }
+
     return(
         <div className="App">
             <div className="split-screen">
                 <div className="split-child"> 
                     <div className="app-body">
                         <h1> EconFly Dashboard</h1>
+                        <div className="fields">
+                            <Button variant="outlined" sx={{m:1, width: 400}} onClick={routeToHome}>
+                                Log out 
+                            </Button>
+                        </div>
                         <h2>Create flight</h2>
                         <div className="fields">  
                             <TextField
