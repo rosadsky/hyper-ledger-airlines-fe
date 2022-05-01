@@ -40,9 +40,6 @@ function Home(){
         console.log("logi as Client")
     }
 
-
-
-
     //routes 
     const routeToBusiFlyAndLogin = () =>{ 
         let path = `/busifly`; 

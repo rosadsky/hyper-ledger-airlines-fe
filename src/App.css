@@ -46,6 +46,10 @@ body {
   flex: 1;
 }
 
+.split-left {
+  flex: 1;
+}
+
 .row {
   padding-top: 5px;
   display: flex;
@@ -58,17 +62,17 @@ body {
 
 .row-left {
   padding-right: 10px;
-  width: 220px;
+  width: 250px;
 }
 .row-right {
   padding-left: 10px;
   margin-left: 20px;
-  width: 220px;
+  width: 250px;
 
 }
 
 .row-child {
-  width: 60px;
+  width: 70px;
   margin: auto;
   border-radius: 4px;
   border-color: #004c98;
@@ -87,5 +91,6 @@ body {
   padding-left: 25px;
   width: 380px;
 }
+
 
 

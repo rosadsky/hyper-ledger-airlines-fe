@@ -1,10 +1,11 @@
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Box } from "@mui/material";
 import React, {useEffect, useState} from 'react';
 import SendIcon from '@mui/icons-material/Send';
 import Axios from 'axios'
 import EventSeatIcon from '@mui/icons-material/EventSeat';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
+
 
 
 
@@ -29,6 +30,9 @@ function BusiFly(){
         allPlaces: 21,
         flyghtString: "BX-SDSAD"
     }]
+
+    const HEHE_LINK = "https://cdn.7tv.app/emote/60fffa47878a49e54f1f3816/4x"
+    const NOT_HEHE_LINK = "https://cdn.discordapp.com/attachments/692831684906975233/970130630950129714/779.png"
 
     const [flyFrom, setFlyFrom] = useState("");
     const [flyTo, setFlyTo] = useState("");
@@ -74,6 +78,8 @@ function BusiFly(){
     const handleFlightID = (event) => {
         setFlightID(event.target.value)
     }
+
+  
 
     // axios functions
 
@@ -206,6 +212,8 @@ function BusiFly(){
                             </Button>
                         </div>
                     </div>
+
+                    
                 </div>
 
                 <div className="split-child">
@@ -248,24 +256,24 @@ function BusiFly(){
                          </div>
 
                         {planeSeats.slice(0,planeSeats.length).map((val,index)=>{
-                            return(
+                            return(//https://cdn.discordapp.com/attachments/692831684906975233/970130630950129714/779.png
                                 <div key={index} className="row">
                                     <div key={index-111111} className="row-left">
 
-                                        {val[0] <  takenSeats && <div className="row-child"  key={val+3214}> <EventSeatIcon style={{ color: "red" }}/>  {val[0]}  </div> }
-                                        {val[0] >= takenSeats && <div className="row-child"  key={val+3214}> <EventSeatIcon style={{ color: "green" }}/>  {val[0]}  </div>}
-                                        {val[1] <  takenSeats && <div className="row-child"  key={val+3214}> <EventSeatIcon style={{ color: "red" }}/>  {val[1]}  </div> }
-                                        {val[1] >= takenSeats && <div className="row-child"  key={val+3214}> <EventSeatIcon style={{ color: "green" }}/>  {val[1]}  </div>}
-                                        {val[2] <  takenSeats && <div className="row-child"  key={val+3214}> <EventSeatIcon style={{ color: "red" }}/>  {val[2]}  </div> }
-                                        {val[2] >= takenSeats && <div className="row-child"  key={val+3214}> <EventSeatIcon style={{ color: "green" }}/>  {val[2]}  </div>}
+                                        {val[0] <  takenSeats && <div className="row-child"  key={val+3214}> <Box component="img" sx={{ height: 45,width: 45, }}src="https://cdn.7tv.app/emote/60fffa47878a49e54f1f3816/4x"/>{val[0]}</div> }
+                                        {val[0] >= takenSeats && <div className="row-child"  key={val+3214}> <Box component="img" sx={{ height: 45,width: 45, }}src="https://cdn.discordapp.com/attachments/692831684906975233/970130630950129714/779.png" />  {val[0]} </div>}
+                                        {val[1] <  takenSeats && <div className="row-child"  key={val+3214}> <Box component="img" sx={{ height: 45,width: 45, }}src="https://cdn.7tv.app/emote/60fffa47878a49e54f1f3816/4x"/> {val[1]}  </div> }
+                                        {val[1] >= takenSeats && <div className="row-child"  key={val+3214}> <Box component="img" sx={{ height: 45,width: 45, }}src="https://cdn.discordapp.com/attachments/692831684906975233/970130630950129714/779.png" />  {val[1]}  </div>}
+                                        {val[2] <  takenSeats && <div className="row-child"  key={val+3214}> <Box component="img" sx={{ height: 45,width: 45, }}src="https://cdn.7tv.app/emote/60fffa47878a49e54f1f3816/4x"/>  {val[2]}  </div> }
+                                        {val[2] >= takenSeats && <div className="row-child"  key={val+3214}> <Box component="img" sx={{ height: 45,width: 45, }}src="https://cdn.discordapp.com/attachments/692831684906975233/970130630950129714/779.png" /> {val[2]}  </div>}
                                     </div>
                                    <div key={index*100} className="row-right">
-                                        {val[3] <  takenSeats && <div className="row-child"  key={val+3214}> <EventSeatIcon style={{ color: "red" }}/>  {val[3]}  </div> }
-                                        {val[3] >= takenSeats && <div className="row-child"  key={val+3214}> <EventSeatIcon style={{ color: "green" }}/>  {val[3]}  </div>}
-                                        {val[4] <  takenSeats && <div className="row-child"  key={val+3214}> <EventSeatIcon style={{ color: "red" }}/>  {val[4]}  </div> }
-                                        {val[4] >= takenSeats && <div className="row-child"  key={val+3214}> <EventSeatIcon style={{ color: "green" }}/>  {val[4]}  </div>}
-                                        {val[5] <  takenSeats && <div className="row-child"  key={val+3214}> <EventSeatIcon style={{ color: "red" }}/>  {val[5]}  </div> }
-                                        {val[5] >= takenSeats && <div className="row-child"  key={val+3214}> <EventSeatIcon style={{ color: "green" }}/>  {val[5]}  </div>}
+                                        {val[3] <  takenSeats && <div className="row-child"  key={val+3214}> <Box component="img" sx={{ height: 45,width: 45, }}src="https://cdn.7tv.app/emote/60fffa47878a49e54f1f3816/4x"/>  {val[3]}  </div> }
+                                        {val[3] >= takenSeats && <div className="row-child"  key={val+3214}> <Box component="img" sx={{ height: 45,width: 45, }}src="https://cdn.discordapp.com/attachments/692831684906975233/970130630950129714/779.png" />  {val[3]}  </div>}
+                                        {val[4] <  takenSeats && <div className="row-child"  key={val+3214}> <Box component="img" sx={{ height: 45,width: 45, }}src="https://cdn.7tv.app/emote/60fffa47878a49e54f1f3816/4x"/>  {val[4]}  </div> }
+                                        {val[4] >= takenSeats && <div className="row-child"  key={val+3214}> <Box component="img" sx={{ height: 45,width: 45, }}src="https://cdn.discordapp.com/attachments/692831684906975233/970130630950129714/779.png" />  {val[4]}  </div>}
+                                        {val[5] <  takenSeats && <div className="row-child"  key={val+3214}> <Box component="img" sx={{ height: 45,width: 45, }}src="https://cdn.7tv.app/emote/60fffa47878a49e54f1f3816/4x"/>  {val[5]}  </div> }
+                                        {val[5] >= takenSeats && <div className="row-child"  key={val+3214}> <Box component="img" sx={{ height: 45,width: 45, }}src="https://cdn.discordapp.com/attachments/692831684906975233/970130630950129714/779.png" />  {val[5]}  </div>}
                                     </div>  
                                 </div>
                             )
