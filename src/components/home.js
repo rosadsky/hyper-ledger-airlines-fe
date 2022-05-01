@@ -4,7 +4,13 @@ import {Button, Box} from '@mui/material'
 
 function Home(){
 
+    let aerolinia1 = new Audio("/aerolinie1.wav")
+    let aerolinia2 = new Audio("/aerolinia2.wav")
+    let cestovka = new Audio("/cestovka.wav")
+    let klient = new Audio("/klient.wav")
+
     const loginAsBusiFly = () => {
+        aerolinia1.play();
         /*
         Axios.post("http://localhost:8000/busifly/login", {"airlineUserBS"}).then((response) => {
            //TODO setAllFlightInfo()
@@ -14,6 +20,7 @@ function Home(){
     }
 
     const loginAsEconFly = () => {
+        aerolinia2.play();
         /*
         Axios.post("http://localhost:8000/econfly/login", {"airlineUserEC"}).then((response) => {
            //TODO setAllFlightInfo()
@@ -23,6 +30,7 @@ function Home(){
     }
 
     const loginAsGladlyAbroad = () => {
+        cestovka.play();
         /*
         Axios.post("http://localhost:8000/gladlyabroad/login", {"travelagencyUser"}).then((response) => {
            //TODO setAllFlightInfo()
@@ -32,6 +40,7 @@ function Home(){
     }
 
     const loginAsClient = () => {
+        klient.play();
         /*
         Axios.post("http://localhost:8000/gladlyabroad/login", {"generalUser"}).then((response) => {
            //TODO setAllFlightInfo()

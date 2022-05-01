@@ -281,7 +281,7 @@ function EconFly(){
                         })}
 
                         {planeSeats.slice(0,planeSeats.length).map((val,index)=>{
-                            return(//https://cdn.discordapp.com/attachments/692831684906975233/970130630950129714/779.png
+                            return(
                             <div key={index} className="row">
                                 <div key={index+4145552151} className="row-left">
                                     {val[0] <=  takenSeats && <div className="row-child"  key={val[0]}> <Box component="img" sx={{ height: 45,width: 45, }}src="https://cdn.7tv.app/emote/60fffa47878a49e54f1f3816/4x"/>{val[0]}</div> }
