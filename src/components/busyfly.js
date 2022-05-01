@@ -4,13 +4,32 @@ import SendIcon from '@mui/icons-material/Send';
 import Axios from 'axios'
 import EventSeatIcon from '@mui/icons-material/EventSeat';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
 
 
 
 
 function BusiFly(){
 
-    const TEST_SEATS_ARRAY = [[1,2,3,4,5,6],[7,8,9,10,11,12],[13,14,15,16,17,18],[19,20,21,22,23,24],[25,26,27,28,29,30],[31,32,33,34,35,36],[37,38,39,40,41,42]]
+
+    const FLIGHT_INFO_TEST_DATA = [{
+        flightNr: "123456",
+        flyFrom: "VIENNA",
+        flyTo: "KOSICE",
+        dateTime: "10:00",
+        availablePlaces: 23,
+        allPlaces: 96,
+        flyghtString: "BX-SDSAD"
+    },
+    {
+        flightNr: "32423",
+        flyFrom: "KOSICE",
+        flyTo: "VIENNA",
+        dateTime: "16:00",
+        availablePlaces: 60,
+        allPlaces: 21,
+        flyghtString: "BX-SDSAD"
+    }]
 
     const [flyFrom, setFlyFrom] = useState("");
     const [flyTo, setFlyTo] = useState("");
@@ -18,9 +37,13 @@ function BusiFly(){
     const [seats, setSeats] = useState("");
     const [reservatinNr,setReservationNr] = useState("");
 
-    //sem treba naparsovať takýto 2D array shit
+
+    //view plane useStates
     const [planeSeats,setPlaneSeats] = useState([]);
-    const [takenSeats, setFreeSeats] = useState(10)
+    const [takenSeats, setFreeSeats] = useState(10);
+    const [flightID, setFlightID] = useState("");
+    const [flightInfo,setFlightInfo] = useState({});
+    const [allFlightInfo,setAllFlightInfo] = useState([])
 
     const handleFlyFrom = (event) => {
         setFlyFrom(event.target.value);
@@ -42,12 +65,35 @@ function BusiFly(){
         setReservationNr(event.target.value);
     };
 
+    // plane seats 
     const handlePlaneSeats = (event) => {
-        setPlaneSeats(TEST_SEATS_ARRAY)
-
+        setPlaneSeats([])
     }
 
-    
+    const handleFlightID = (event) => {
+        setFlightID(event.target.value)
+    }
+
+    const getFlight = () => {
+        //TMP
+        let axiosResponse = 90;
+        let seatsArray = [];
+        let tmpSeatArray = [];
+        for(let j = 0; j < axiosResponse; j++){
+            tmpSeatArray.push(j);
+        }
+
+        for(let i = 0; i < axiosResponse; i+=6){
+            seatsArray.push(tmpSeatArray.slice(i,i+6))
+        }
+
+        setPlaneSeats(seatsArray);
+        /*
+        Axios.get("http://localhost:8000/busifly/getflight", {}).then((response) => {
+           //TODO setFlightInfo()
+        })
+        */
+    }
 
     const sendCreateFlight = () => {
       
@@ -67,6 +113,10 @@ function BusiFly(){
       }).then(() =>{
           console.log('Book seats send to backend')
       })
+    }
+
+    const getAllFlights = () => {
+        setAllFlightInfo(FLIGHT_INFO_TEST_DATA)
     }
 
     return(
@@ -145,22 +195,43 @@ function BusiFly(){
                         </div>
                     </div>
                 </div>
+
                 <div className="split-child">
                     <div className="app-body">
-                        <h1>Plane view</h1>
+                    <h1>All Flights view</h1>
+                        <div className="fields"> 
+                            <Button variant="contained" endIcon={<ListAltOutlinedIcon />} onClick={getAllFlights} >
+                                    Show All flights
+                            </Button>
+                         </div>   
+                        {allFlightInfo.map((val,index)=>{
+                            return(
+                                <div className="flight-info-container">
+                                    <p> Flight number: {val.flightNr}</p>
+                                    <p> From: {val.flyFrom}</p>
+                                    <p> To: {val.flyTo}</p>
+                                    <p> Time: {val.dateTime}</p>
+                                    <p> Available places: {val.availablePlaces}</p>
+                                </div>
+
+                            )
+                        })}
+
+
+                        <h1>Flight view</h1>
                         <div className="fields"> 
                             <TextField
                                     color="primary" focused 
                                     variant="outlined"
                                     label="Insert flyght ID "
-                                    value={flyFrom}
-                                    onChange={handleFlyFrom}
+                                    value={flightID}
+                                    onChange={handleFlightID}
                                     sx={{ input: { color: 'white' }, width: 400 }}
 
                                 />
                         </div>
                         <div className="fields"> 
-                            <Button variant="contained" endIcon={<VisibilityOutlinedIcon />} onClick={handlePlaneSeats} >
+                            <Button variant="contained" endIcon={<VisibilityOutlinedIcon />} onClick={getFlight} >
                                     Show plane seats
                             </Button>
                          </div>
@@ -189,20 +260,11 @@ function BusiFly(){
                                 </div>
                             )
                         })}
-                        
-
-
-
-
                     </div>
-                    
                 </div>
             </div>
         </div>
-        
-
     )
-  
 }
 
 
