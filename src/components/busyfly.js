@@ -42,7 +42,7 @@ function BusiFly(){
 
     //view plane useStates
     const [planeSeats,setPlaneSeats] = useState([]);
-    const [takenSeats, setFreeSeats] = useState(10);
+    const [takenSeats, setTakeSeats] = useState();
     const [flightID, setFlightID] = useState("");
     const [flightInfo,setFlightInfo] = useState([]);
     const [allFlightInfo,setAllFlightInfo] = useState([])
@@ -78,32 +78,32 @@ function BusiFly(){
         setFlightID(event.target.value)
     }
 
-  
-
     // axios functions
 
     const getFlight = () => {
         //TMP
         let flight_info = [{
             allPlaces: "12",
-            availablePlaces: "12",
+            availablePlaces: "3",
             dateTime: "03/07/2022",
             flightNr: "BS000",
             flyFrom: "KUL",
             flyTo: "DPS"
         }]
 
-        let generatePlaces = parseInt(flight_info[0].allPlaces);
+        let all_places = parseInt(flight_info[0].allPlaces);
+        let available_places = parseInt(flight_info[0].availablePlaces);
+        setTakeSeats(all_places-available_places);
         let seatsArray = [];
         let tmpSeatArray = [];
 
         // generate array with numbers to n 
-        for(let j = 0; j < generatePlaces; j++){
+        for(let j = 0; j < all_places; j++){
             tmpSeatArray.push(j);
         }
 
         //generate 2D array for fancy render :) 
-        for(let i = 0; i < generatePlaces; i+=6){
+        for(let i = 0; i < all_places; i+=6){
             seatsArray.push(tmpSeatArray.slice(i,i+6))
         }
         // setnuť aj ten jeden object ako array plz

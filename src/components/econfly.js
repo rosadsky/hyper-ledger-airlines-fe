@@ -36,9 +36,9 @@ function EconFly(){
 
     //view plane useStates
     const [planeSeats,setPlaneSeats] = useState([]);
-    const [takenSeats, setFreeSeats] = useState(10);
+    const [takenSeats, setTakeSeats] = useState();
     const [flightID, setFlightID] = useState("");
-    const [flightInfo,setFlightInfo] = useState({});
+    const [flightInfo,setFlightInfo] = useState([]);
     const [allFlightInfo,setAllFlightInfo] = useState([])
     
     const handleFlyFrom = (event) => {
@@ -74,21 +74,35 @@ function EconFly(){
 
      const getFlight = () => {
         //TMP
-        let axiosResponse = 90;
+        let flight_info = [{
+            allPlaces: "12",
+            availablePlaces: "3",
+            dateTime: "03/07/2022",
+            flightNr: "BS000",
+            flyFrom: "KUL",
+            flyTo: "DPS"
+        }]
+
+        let all_places = parseInt(flight_info[0].allPlaces);
+        let available_places = parseInt(flight_info[0].availablePlaces);
+        setTakeSeats(all_places-available_places);
         let seatsArray = [];
         let tmpSeatArray = [];
+        
 
         // generate array with numbers to n 
-        for(let j = 0; j < axiosResponse; j++){
+        for(let j = 0; j < all_places; j++){
             tmpSeatArray.push(j);
         }
 
         //generate 2D array for fancy render :) 
-        for(let i = 0; i < axiosResponse; i+=6){
+        for(let i = 0; i < all_places; i+=6){
             seatsArray.push(tmpSeatArray.slice(i,i+6))
         }
 
-        setPlaneSeats(seatsArray);
+         // setnuť aj ten jeden object ako array plz
+         setFlightInfo(flight_info)
+         setPlaneSeats(seatsArray);
         /*
         Axios.get("http://localhost:8000/busifly/getflight", {}).then((response) => {
            //TODO setFlightInfo()
@@ -251,6 +265,17 @@ function EconFly(){
                                     Show plane seats
                             </Button>
                          </div>
+                         {flightInfo.map((val,index)=>{
+                            return(
+                                <div key={index+9191} className="flight-info-container">
+                                    <p> Flight number: {val.flightNr}</p>
+                                    <p> From: {val.flyFrom}</p>
+                                    <p> To: {val.flyTo}</p>
+                                    <p> Time: {val.dateTime}</p>
+                                    <p> Available places: {val.availablePlaces}</p>
+                                </div>
+                            )
+                        })}
 
                         {planeSeats.slice(0,planeSeats.length).map((val,index)=>{
                             return(//https://cdn.discordapp.com/attachments/692831684906975233/970130630950129714/779.png
