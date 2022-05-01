@@ -12,23 +12,22 @@ import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
 
 function BusiFly(){
 
-    const FLIGHT_INFO_TEST_DATA = [{
-        flightNr: "123456",
-        flyFrom: "VIENNA",
-        flyTo: "KOSICE",
-        dateTime: "10:00",
-        availablePlaces: 23,
-        allPlaces: 96,
-        flyghtString: "BX-SDSAD"
+    const FLIGHT_INFO_TEST_DATA = [
+        {
+        allPlaces: "12",
+        availablePlaces: "12",
+        dateTime: "03/07/2022",
+        flightNr: "BS000",
+        flyFrom: "KUL",
+        flyTo: "DPS"
     },
     {
-        flightNr: "32423",
-        flyFrom: "KOSICE",
-        flyTo: "VIENNA",
-        dateTime: "16:00",
-        availablePlaces: 60,
-        allPlaces: 21,
-        flyghtString: "BX-SDSAD"
+        allPlaces: "120",
+        availablePlaces: "120",
+        dateTime: "30/06/2022",
+        flightNr: "BS001",
+        flyFrom: "VIE",
+        flyTo: "AUH"
     }]
 
     const HEHE_LINK = "https://cdn.7tv.app/emote/60fffa47878a49e54f1f3816/4x"
@@ -108,12 +107,10 @@ function BusiFly(){
     }
 
     const getAllFlights = () => {
-
-        /*
         Axios.get("http://localhost:8000/busifly/getallflights").then((response) => {
            //TODO setAllFlightInfo()
         })
-        */
+        
 
         setAllFlightInfo(FLIGHT_INFO_TEST_DATA)
     }
@@ -133,7 +130,7 @@ function BusiFly(){
         Axios.post('http://localhost:8000/busifly/bookseats', {
           reservatinNr: reservatinNr
       }).then(() =>{
-          console.log('Book seats send to backend')
+          console.log('Book seats send to backend');
       })
     }
 
@@ -213,7 +210,6 @@ function BusiFly(){
                                     value={reservatinNr}
                                     onChange={handleReservationNr}
                                     sx={{ input: { color: 'white' }, width: 400 }}
-
                                 />
                         </div>
                         <div className="fields">  
@@ -221,9 +217,7 @@ function BusiFly(){
                                 Change reservetion state
                             </Button>
                         </div>
-                    </div>
-
-                    
+                    </div>                    
                 </div>
 
                 <div className="split-child">
@@ -243,7 +237,6 @@ function BusiFly(){
                                     <p> Time: {val.dateTime}</p>
                                     <p> Available places: {val.availablePlaces}</p>
                                 </div>
-
                             )
                         })}
 
@@ -256,7 +249,6 @@ function BusiFly(){
                                     value={flightID}
                                     onChange={handleFlightID}
                                     sx={{ input: { color: 'white' }, width: 400 }}
-
                                 />
                         </div>
                         <div className="fields"> 
