@@ -1,5 +1,5 @@
 
-import { Button, TextField } from "@mui/material";
+import { Button, TextField ,Box} from "@mui/material";
 import React, {useEffect, useState} from 'react';
 import SendIcon from '@mui/icons-material/Send';
 import Axios from 'axios'
@@ -208,7 +208,7 @@ function Client(){
                          </div>   
                         {allFlightInfo.map((val,index)=>{
                             return(
-                                <div className="flight-info-container">
+                                <div key={index+9191} className="flight-info-container">
                                     <p> Flight number: {val.flightNr}</p>
                                     <p> From: {val.flyFrom}</p>
                                     <p> To: {val.flyTo}</p>
@@ -240,22 +240,21 @@ function Client(){
                         {planeSeats.slice(0,planeSeats.length).map((val,index)=>{
                             return(
                                 <div key={index} className="row">
-                                    <div key={index-111111} className="row-left">
-
-                                        {val[0] <  takenSeats && <div className="row-child"  key={val+3214}> <EventSeatIcon style={{ color: "red" }}/>  {val[0]}  </div> }
-                                        {val[0] >= takenSeats && <div className="row-child"  key={val+3214}> <EventSeatIcon style={{ color: "green" }}/>  {val[0]}  </div>}
-                                        {val[1] <  takenSeats && <div className="row-child"  key={val+3214}> <EventSeatIcon style={{ color: "red" }}/>  {val[1]}  </div> }
-                                        {val[1] >= takenSeats && <div className="row-child"  key={val+3214}> <EventSeatIcon style={{ color: "green" }}/>  {val[1]}  </div>}
-                                        {val[2] <  takenSeats && <div className="row-child"  key={val+3214}> <EventSeatIcon style={{ color: "red" }}/>  {val[2]}  </div> }
-                                        {val[2] >= takenSeats && <div className="row-child"  key={val+3214}> <EventSeatIcon style={{ color: "green" }}/>  {val[2]}  </div>}
+                                    <div key={index+4145552151} className="row-left">
+                                        {val[0] <  takenSeats && <div className="row-child"  key={val[0]}> <Box component="img" sx={{ height: 45,width: 45, }}src="https://cdn.7tv.app/emote/60fffa47878a49e54f1f3816/4x"/>{val[0]}</div> }
+                                        {val[0] >= takenSeats && <div className="row-child"  key={val[0]}> <Box component="img" sx={{ height: 45,width: 45, }}src="https://cdn.discordapp.com/attachments/692831684906975233/970130630950129714/779.png" />  {val[0]} </div>}
+                                        {val[1] <  takenSeats && <div className="row-child"  key={val[1]}> <Box component="img" sx={{ height: 45,width: 45, }}src="https://cdn.7tv.app/emote/60fffa47878a49e54f1f3816/4x"/> {val[1]}  </div> }
+                                        {val[1] >= takenSeats && <div className="row-child"  key={val[1]}> <Box component="img" sx={{ height: 45,width: 45, }}src="https://cdn.discordapp.com/attachments/692831684906975233/970130630950129714/779.png" />  {val[1]}  </div>}
+                                        {val[2] <  takenSeats && <div className="row-child"  key={val[2]}> <Box component="img" sx={{ height: 45,width: 45, }}src="https://cdn.7tv.app/emote/60fffa47878a49e54f1f3816/4x"/>  {val[2]}  </div> }
+                                        {val[2] >= takenSeats && <div className="row-child"  key={val[2]}> <Box component="img" sx={{ height: 45,width: 45, }}src="https://cdn.discordapp.com/attachments/692831684906975233/970130630950129714/779.png" /> {val[2]}  </div>}
                                     </div>
                                    <div key={index*100} className="row-right">
-                                        {val[3] <  takenSeats && <div className="row-child"  key={val+3214}> <EventSeatIcon style={{ color: "red" }}/>  {val[3]}  </div> }
-                                        {val[3] >= takenSeats && <div className="row-child"  key={val+3214}> <EventSeatIcon style={{ color: "green" }}/>  {val[3]}  </div>}
-                                        {val[4] <  takenSeats && <div className="row-child"  key={val+3214}> <EventSeatIcon style={{ color: "red" }}/>  {val[4]}  </div> }
-                                        {val[4] >= takenSeats && <div className="row-child"  key={val+3214}> <EventSeatIcon style={{ color: "green" }}/>  {val[4]}  </div>}
-                                        {val[5] <  takenSeats && <div className="row-child"  key={val+3214}> <EventSeatIcon style={{ color: "red" }}/>  {val[5]}  </div> }
-                                        {val[5] >= takenSeats && <div className="row-child"  key={val+3214}> <EventSeatIcon style={{ color: "green" }}/>  {val[5]}  </div>}
+                                        {val[3] <  takenSeats && <div className="row-child"  key={val[3]}> <Box component="img" sx={{ height: 45,width: 45, }}src="https://cdn.7tv.app/emote/60fffa47878a49e54f1f3816/4x"/>  {val[3]}  </div> }
+                                        {val[3] >= takenSeats && <div className="row-child"  key={val[3]}> <Box component="img" sx={{ height: 45,width: 45, }}src="https://cdn.discordapp.com/attachments/692831684906975233/970130630950129714/779.png" />  {val[3]}  </div>}
+                                        {val[4] <  takenSeats && <div className="row-child"  key={val[4]}> <Box component="img" sx={{ height: 45,width: 45, }}src="https://cdn.7tv.app/emote/60fffa47878a49e54f1f3816/4x"/>  {val[4]}  </div> }
+                                        {val[4] >= takenSeats && <div className="row-child"  key={val[4]}> <Box component="img" sx={{ height: 45,width: 45, }}src="https://cdn.discordapp.com/attachments/692831684906975233/970130630950129714/779.png" />  {val[4]}  </div>}
+                                        {val[5] <  takenSeats && <div className="row-child"  key={val[5]}> <Box component="img" sx={{ height: 45,width: 45, }}src="https://cdn.7tv.app/emote/60fffa47878a49e54f1f3816/4x"/>  {val[5]}  </div> }
+                                        {val[5] >= takenSeats && <div className="row-child"  key={val[5]}> <Box component="img" sx={{ height: 45,width: 45, }}src="https://cdn.discordapp.com/attachments/692831684906975233/970130630950129714/779.png" />  {val[5]}  </div>}
                                     </div>  
                                 </div>
                             )
