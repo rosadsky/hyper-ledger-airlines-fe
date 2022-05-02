@@ -12,27 +12,6 @@ import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
 
 function BusiFly(){
 
-    const FLIGHT_INFO_TEST_DATA = [
-        {
-        allPlaces: "12",
-        availablePlaces: "12",
-        dateTime: "03/07/2022",
-        flightNr: "BS000",
-        flyFrom: "KUL",
-        flyTo: "DPS"
-    },
-    {
-        allPlaces: "120",
-        availablePlaces: "120",
-        dateTime: "30/06/2022",
-        flightNr: "BS001",
-        flyFrom: "VIE",
-        flyTo: "AUH"
-    }]
-
-    const HEHE_LINK = "https://cdn.7tv.app/emote/60fffa47878a49e54f1f3816/4x"
-    const NOT_HEHE_LINK = "https://cdn.discordapp.com/attachments/692831684906975233/970130630950129714/779.png"
-
     const [flyFrom, setFlyFrom] = useState("");
     const [flyTo, setFlyTo] = useState("");
     const [dateTime, setDateTime] = useState("");

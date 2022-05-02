@@ -11,25 +11,6 @@ import { useNavigate } from 'react-router-dom'
 
 function Client(){
 
-    const FLIGHT_INFO_TEST_DATA = [{
-        flightNr: "123456",
-        flyFrom: "VIENNA",
-        flyTo: "KOSICE",
-        dateTime: "10:00",
-        availablePlaces: 23,
-        allPlaces: 96,
-        flyghtString: "BX-SDSAD"
-    },
-    {
-        flightNr: "32423",
-        flyFrom: "KOSICE",
-        flyTo: "VIENNA",
-        dateTime: "16:00",
-        availablePlaces: 60,
-        allPlaces: 21,
-        flyghtString: "BX-SDSAD"
-    }]
-
     const [flightNr, setFlightNr] = useState("");
     const [number, setNumber] = useState("");
     const [reservationNr, setReservationNr] = useState("");
@@ -109,9 +90,6 @@ function Client(){
         Axios.get("http://localhost:8000/getAllFlights").then((response) => {
             setAllFlightInfo(response.data);
         })
-        
-
-        
     }
     
     // AGENCY/CLIENT FUNCTIONS 
@@ -252,13 +230,8 @@ function Client(){
                         })}
                     </div>
                 </div>
-
             </div>
-       </div>
-        
-        
-        
-        
+       </div>  
     )
 }
 
