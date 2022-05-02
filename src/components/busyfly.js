@@ -1,5 +1,5 @@
 import { Button, TextField, Box } from "@mui/material";
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom'
 import SendIcon from '@mui/icons-material/Send';
 import Axios from 'axios'
@@ -48,11 +48,6 @@ function BusiFly(){
         setReservationNr(event.target.value);
     };
 
-    // plane seats  handlers 
-    const handlePlaneSeats = (event) => {
-        setPlaneSeats([])
-    }
-
     const handleFlightID = (event) => {
         setFlightID(event.target.value)
     }
@@ -91,22 +86,16 @@ function BusiFly(){
         for(let i = 0; i <= all_places; i+=6){
             seatsArray.push(tmpSeatArray.slice(i,i+6))
         }
+
         // setnuť aj ten jeden object ako array plz
         setPlaneSeats(seatsArray);
-
-        
     }
 
     const getAllFlights = () => {
         Axios.get("http://localhost:8000/getAllFlights").then((response) => {
             setAllFlightInfo(response.data);
-        })
-        
-
-        
+        })  
     }
-
-
     // AIRLINE FUNCTIONS 
 
     const sendCreateFlight = () => {

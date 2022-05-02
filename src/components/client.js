@@ -1,9 +1,8 @@
 
 import { Button, TextField ,Box} from "@mui/material";
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import SendIcon from '@mui/icons-material/Send';
 import Axios from 'axios'
-import EventSeatIcon from '@mui/icons-material/EventSeat';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
 import { useNavigate } from 'react-router-dom'
@@ -11,8 +10,6 @@ import { useNavigate } from 'react-router-dom'
 
 function Client(){
 
-    const [flightNr, setFlightNr] = useState("");
-    const [number, setNumber] = useState("");
     const [reservationNr, setReservationNr] = useState("");
     const [passportsIDs, setPassportsIDs] = useState("");
 
@@ -23,14 +20,7 @@ function Client(){
     const [flightInfo,setFlightInfo] = useState([]);
     const [allFlightInfo,setAllFlightInfo] = useState([])
 
-    const handleFlightNr = (event) => {
-        setFlightNr(event.target.value);
-    };
-
-    const handleNumber = (event) => {
-        setNumber(event.target.value);
-    };
-
+   
     const handleReservationNr = (event) => {
         setReservationNr(event.target.value);
     };
@@ -38,11 +28,6 @@ function Client(){
     const handlePassportsIDs = (event) => {
         setPassportsIDs(event.target.value);
     };
-
-     // plane seats  handlers 
-     const handlePlaneSeats = (event) => {
-        setPlaneSeats([])
-    }
 
     const handleFlightID = (event) => {
         setFlightID(event.target.value)

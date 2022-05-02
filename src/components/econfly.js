@@ -1,5 +1,5 @@
 import { Button, TextField, Box } from "@mui/material";
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import SendIcon from '@mui/icons-material/Send';
 import Axios from 'axios'
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
@@ -41,11 +41,6 @@ function EconFly(){
     const handleReservationNr = (event) => {
         setReservationNr(event.target.value);
     };
-
-     // plane seats  handlers 
-     const handlePlaneSeats = (event) => {
-        setPlaneSeats([])
-    }
 
     const handleFlightID = (event) => {
         setFlightID(event.target.value)
@@ -279,8 +274,6 @@ function EconFly(){
                 </div>
             </div>
         </div>
-        
-
     )
 }
 

@@ -62,7 +62,6 @@ function Home(){
             klient.play();
         }
         
-        
         Axios.post("http://localhost:8000/client/login", {
             "nickname": "generalUser"}).then((response) => {
            console.log(response);
