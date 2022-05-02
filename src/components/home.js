@@ -1,16 +1,27 @@
 
 import { useNavigate } from 'react-router-dom'
 import {Button, Box} from '@mui/material'
+import React, {useState} from 'react';
 
 function Home(){
 
-    let aerolinia1 = new Audio("/aerolinie1.wav")
-    let aerolinia2 = new Audio("/aerolinia2.wav")
-    let cestovka = new Audio("/cestovka.wav")
-    let klient = new Audio("/klient.wav")
+    let aerolinia1 = new Audio("/aerolinie1.wav");
+    let aerolinia2 = new Audio("/aerolinia2.wav");
+    let cestovka = new Audio("/cestovka.wav");
+    let klient = new Audio("/klient.wav");
+
+    const [soundOn, setSoundOn] = useState(false);
+
+    const handleSound = () => {
+        setSoundOn(true)
+    };
 
     const loginAsBusiFly = () => {
-        aerolinia1.play();
+
+        if(soundOn){
+            aerolinia1.play();
+        }
+        
         /*
         Axios.post("http://localhost:8000/busifly/login", {"airlineUserBS"}).then((response) => {
            //TODO setAllFlightInfo()
@@ -20,7 +31,10 @@ function Home(){
     }
 
     const loginAsEconFly = () => {
-        aerolinia2.play();
+        if(soundOn){
+            aerolinia2.play();
+        }
+        
         /*
         Axios.post("http://localhost:8000/econfly/login", {"airlineUserEC"}).then((response) => {
            //TODO setAllFlightInfo()
@@ -30,7 +44,10 @@ function Home(){
     }
 
     const loginAsGladlyAbroad = () => {
-        cestovka.play();
+        if(soundOn){
+            cestovka.play();
+        }
+        
         /*
         Axios.post("http://localhost:8000/gladlyabroad/login", {"travelagencyUser"}).then((response) => {
            //TODO setAllFlightInfo()
@@ -40,7 +57,10 @@ function Home(){
     }
 
     const loginAsClient = () => {
-        klient.play();
+        if(soundOn){
+            klient.play();
+        }
+        
         /*
         Axios.post("http://localhost:8000/gladlyabroad/login", {"generalUser"}).then((response) => {
            //TODO setAllFlightInfo()
@@ -104,6 +124,10 @@ function Home(){
                     </Button>
                 </div>
              </div>
+
+             <Button variant="outlined" sx={{m:1}} onClick={handleSound}>
+                        sounds 
+                    </Button>
         </div>
     )
   
