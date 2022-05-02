@@ -32,6 +32,8 @@ function GladlyAbroad(){
     const [number, setNumber] = useState("");
     const [reservationNr, setReservationNr] = useState("");
     const [passportsIDs, setPassportsIDs] = useState("");
+    const [customerEmail, setCustomerEmail] = useState("")
+    const [customersNames, setCustomerNames] = useState([]);
 
     //view plane useStates
     const [planeSeats,setPlaneSeats] = useState([]);
@@ -64,6 +66,14 @@ function GladlyAbroad(){
     const handleFlightID = (event) => {
         setFlightID(event.target.value)
     }
+
+    const handleCustomerEmail= (event) => {
+        setCustomerEmail(event.target.value);
+    };
+
+    const handleCustomerNames= (event) => {
+        setCustomerNames(event.target.value);
+    };
 
     const getFlight = () => {
 
@@ -114,8 +124,8 @@ function GladlyAbroad(){
     
     const sendReserveSeats = () => {
         Axios.post('http://localhost:8080/reserveSeats', {
-          customerName: ["Daniel Gašparík", "Roman Osadský", "Bruno Hanus"],
-          customerEmail:"daniel.gasparik1@gmail.com",
+          customerName: customersNames,
+          customerEmail: customerEmail,
           flightNr: flightNr,
           number: number
       }).then((response) =>{
@@ -157,6 +167,28 @@ function GladlyAbroad(){
                             </Button>
                         </div>
                         <h2>ReserveSeats </h2>
+                        <div className="fields">  
+                                <TextField
+                                    color="primary" focused 
+                                    variant="outlined"
+                                    label="Customer email"
+                                    value={customerEmail}
+                                    onChange={handleCustomerEmail}
+                                    sx={{ input: { color: 'white' }, width: 400 }}
+
+                                />
+                        </div>
+                        <div className="fields">  
+                                <TextField
+                                    color="primary" focused 
+                                    variant="outlined"
+                                    label="Customer Names"
+                                    value={customersNames}
+                                    onChange={handleCustomerNames}
+                                    sx={{ input: { color: 'white' }, width: 400 }}
+
+                                />
+                        </div>
                         <div className="fields">  
                                 <TextField
                                     color="primary" focused 
