@@ -2,7 +2,7 @@
 import { useNavigate } from 'react-router-dom'
 import {Button, Box} from '@mui/material'
 import React, {useState} from 'react';
-
+import Axios from 'axios';
 function Home(){
 
     let aerolinia1 = new Audio("/aerolinie1.wav");
@@ -22,11 +22,13 @@ function Home(){
             aerolinia1.play();
         }
         
-        /*
-        Axios.post("http://localhost:8000/busifly/login", {"airlineUserBS"}).then((response) => {
-           //TODO setAllFlightInfo()
+        
+        Axios.post("http://localhost:8080/busfly/login", {
+            "nickname":"airlineUserBS"
+        }).then((response) => {
+            
         })
-        */
+        
         console.log("logi as busi")
     }
 

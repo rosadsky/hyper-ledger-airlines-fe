@@ -81,7 +81,12 @@ function BusiFly(){
     // axios functions
 
     const getFlight = () => {
+
+        const response = Axios.get(`http://localhost:8000/getFlight?id=${flightID}`)
+        setFlightInfo([response.data]);
+        
         //TMP
+        /*
         let flight_info = [{
             allPlaces: "12",
             availablePlaces: "3",
@@ -90,9 +95,10 @@ function BusiFly(){
             flyFrom: "KUL",
             flyTo: "DPS"
         }]
+        */
 
-        let all_places = parseInt(flight_info[0].allPlaces);
-        let available_places = parseInt(flight_info[0].availablePlaces);
+        let all_places = parseInt(flightInfo[0].allPlaces);
+        let available_places = parseInt(flightInfo[0].availablePlaces);
         setTakeSeats(all_places-available_places);
         let seatsArray = [];
         let tmpSeatArray = [];
@@ -107,45 +113,39 @@ function BusiFly(){
             seatsArray.push(tmpSeatArray.slice(i,i+6))
         }
         // setnuť aj ten jeden object ako array plz
-        setFlightInfo(flight_info)
         setPlaneSeats(seatsArray);
-        /*
-        Axios.get("http://localhost:8000/busifly/getflight", { params: { id: flightID }})
-        .then((response) => {
-           //TODO setFlightInfo()
-        })
-        */
+
+        
     }
 
     const getAllFlights = () => {
-        Axios.get("http://localhost:8000/busifly/getallflights").then((response) => {
-           //TODO setAllFlightInfo()
+        Axios.get("http://localhost:8000/getAllFlights").then((response) => {
+            setAllFlightInfo(response.data);
         })
         
 
-        setAllFlightInfo(FLIGHT_INFO_TEST_DATA)
+        
     }
 
 
     // AIRLINE FUNCTIONS 
 
     const sendCreateFlight = () => {
-        Axios.post('http://localhost:8000/busifly/createflight', {
-          flyTo: flyTo,
+        Axios.post('http://localhost:8000/createFlight', {
           flyFrom: flyFrom,
+          flyTo: flyTo,
           dateTime: dateTime,
           seats: seats
-      }).then(() =>{
+      }).then((response) =>{
+          console.log(response.data);
           console.log('Create flight send to backend')
       })
     }
 
     const sendBookSeats = () => {
-        Axios.post('http://localhost:8000/busifly/bookseats', {
-          reservatinNr: reservatinNr
-      }).then(() =>{
-          console.log('Book seats send to backend');
-      })
+        Axios.post(`http://localhost:8000/bookSeats?reservationNr=${reservatinNr}`).then((response) =>{
+            console.log(response);
+        })
     }
 
     // END AIRLINE FUNCTIONS 

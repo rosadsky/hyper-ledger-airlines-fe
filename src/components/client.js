@@ -68,8 +68,12 @@ function Client(){
     }
 
     const getFlight = () => {
-        //TMP
+
+        const response = Axios.get(`http://localhost:8000/getFlight?id=${flightID}`)
+        setFlightInfo([response.data]);
         
+        //TMP
+        /*
         let flight_info = [{
             allPlaces: "12",
             availablePlaces: "3",
@@ -78,15 +82,16 @@ function Client(){
             flyFrom: "KUL",
             flyTo: "DPS"
         }]
+        */
 
-        let all_places = parseInt(flight_info[0].allPlaces);
-        let available_places = parseInt(flight_info[0].availablePlaces);
+        let all_places = parseInt(flightInfo[0].allPlaces);
+        let available_places = parseInt(flightInfo[0].availablePlaces);
         setTakeSeats(all_places-available_places);
         let seatsArray = [];
         let tmpSeatArray = [];
 
         // generate array with numbers to n 
-        for(let j = 1; j < all_places; j++){
+        for(let j = 1; j <= all_places; j++){
             tmpSeatArray.push(j);
         }
 
@@ -94,40 +99,26 @@ function Client(){
         for(let i = 0; i <= all_places; i+=6){
             seatsArray.push(tmpSeatArray.slice(i,i+6))
         }
-
-        setFlightInfo(flight_info)
+        // setnuť aj ten jeden object ako array plz
         setPlaneSeats(seatsArray);
-        /*
-        Axios.get("http://localhost:8000/client/getflight", { params: { id: flightID }})
-        .then((response) => {
-           //TODO setFlightInfo()
-        })
-        */
+
+        
     }
 
     const getAllFlights = () => {
-        Axios.get("http://localhost:8000/client/getallflights").then((response) => {
-           //TODO setAllFlightInfo()
+        Axios.get("http://localhost:8000/getAllFlights").then((response) => {
+            setAllFlightInfo(response.data);
         })
         
 
-        setAllFlightInfo(FLIGHT_INFO_TEST_DATA)
+        
     }
     
     // AGENCY/CLIENT FUNCTIONS 
 
-    const sendReserveSeats = () => {
-        Axios.post('http://localhost:8000/client/reserveseats', {
-          flightNr: flightNr,
-          number: number
-      }).then(() =>{
-          console.log('Reserve seats send to backend')
-      })
-    }
-
     const sendCheckIn = () => {
         let passportsArray = passportsIDs.split(',');
-        Axios.post('http://localhost:8000/client/reserveseats', {
+        Axios.post('http://localhost:8080/client/reserveSeats', {
           reservationNr: reservationNr,
           passportsIDs: passportsArray
       }).then(() =>{
@@ -154,34 +145,7 @@ function Client(){
                                 Log out 
                             </Button>
                         </div>
-                        <h2>ReserveSeats </h2>
-                        <div className="fields">  
-                                <TextField
-                                    color="primary" focused 
-                                    variant="outlined"
-                                    label="Flight Number"
-                                    value={flightNr}
-                                    onChange={handleFlightNr}
-                                    sx={{ input: { color: 'white' }, width: 400 }}
-
-                                />
-                        </div>
-                        <div className="fields">  
-                                <TextField
-                                    color="primary" focused 
-                                    variant="outlined"
-                                    label="Number of seats"
-                                    value={number}
-                                    onChange={handleNumber}
-                                    sx={{ input: { color: 'white' }, width: 400 }}
-
-                                />
-                        </div>
-                        <div className="fields">  
-                            <Button variant="contained" endIcon={<SendIcon />} onClick={sendReserveSeats}>
-                                Reserve seats
-                            </Button>
-                        </div>
+                        
                     </div>
                     <div className="app-body">
                         <h2>Make Check In </h2>

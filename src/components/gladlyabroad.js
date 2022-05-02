@@ -66,7 +66,12 @@ function GladlyAbroad(){
     }
 
     const getFlight = () => {
+
+        const response = Axios.get(`http://localhost:8080/getFlight?id=${flightID}`)
+        setFlightInfo([response.data]);
+        
         //TMP
+        /*
         let flight_info = [{
             allPlaces: "12",
             availablePlaces: "3",
@@ -75,15 +80,16 @@ function GladlyAbroad(){
             flyFrom: "KUL",
             flyTo: "DPS"
         }]
+        */
 
-        let all_places = parseInt(flight_info[0].allPlaces);
-        let available_places = parseInt(flight_info[0].availablePlaces);
+        let all_places = parseInt(flightInfo[0].allPlaces);
+        let available_places = parseInt(flightInfo[0].availablePlaces);
         setTakeSeats(all_places-available_places);
         let seatsArray = [];
         let tmpSeatArray = [];
 
         // generate array with numbers to n 
-        for(let j = 1; j < all_places; j++){
+        for(let j = 1; j <= all_places; j++){
             tmpSeatArray.push(j);
         }
 
@@ -91,44 +97,43 @@ function GladlyAbroad(){
         for(let i = 0; i <= all_places; i+=6){
             seatsArray.push(tmpSeatArray.slice(i,i+6))
         }
-
-        setFlightInfo(flight_info)
+        // setnuť aj ten jeden object ako array plz
         setPlaneSeats(seatsArray);
-        /*
-        Axios.get("http://localhost:8000/gladlyabroad/getflight", { params: { id: flightID }})
-        .then((response) => {
-           //TODO setFlightInfo()
-        })
-        */
+
     }
 
     const getAllFlights = () => {
-        Axios.get("http://localhost:8000/gladlyabroad/getallflights").then((response) => {
-           //TODO setAllFlightInfo()
+         Axios.get("http://localhost:8080/getAllFlights").then((response) => {
+            setAllFlightInfo(response.data);
         })
         
 
-        setAllFlightInfo(FLIGHT_INFO_TEST_DATA)
     }
 
     // AGENCY/CLIENT FUNCTIONS 
     
     const sendReserveSeats = () => {
-        Axios.post('http://localhost:8000/gladlyabroad/reserveseats', {
+        Axios.post('http://localhost:8080/reserveSeats', {
+          customerName: ["Daniel Gašparík", "Roman Osadský", "Bruno Hanus"],
+          customerEmail:"daniel.gasparik1@gmail.com",
           flightNr: flightNr,
           number: number
-      }).then(() =>{
-          console.log('Reserve seats send to backend')
+      }).then((response) =>{
+        console.log('Reserve seats send to backend')
+          console.log("Reservation:");
+          console.log(response.data);
+         
       })
     }
 
     const sendCheckIn = () => {
         let passportsArray = passportsIDs.split(',');
-        Axios.post('http://localhost:8000/gladlyabroad/reserveseats', {
+        Axios.post('http://localhost:8080/checkIn', {
           reservationNr: reservationNr,
           passportsIDs: passportsArray
-      }).then(() =>{
-          console.log('Reserve seats send to backend')
+      }).then((response) =>{
+          console.log('Reserve seats send to backend');
+          console.log(response.data);
       })
     }
 
