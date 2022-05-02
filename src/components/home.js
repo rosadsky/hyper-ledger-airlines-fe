@@ -22,14 +22,13 @@ function Home(){
             aerolinia1.play();
         }
         
-        
         Axios.post("http://localhost:8080/busfly/login", {
             "nickname":"airlineUserBS"
         }).then((response) => {
-            
+            console.log(response);
         })
         
-        console.log("logi as busi")
+        console.log("login as busi")
     }
 
     const loginAsEconFly = () => {
@@ -37,12 +36,12 @@ function Home(){
             aerolinia2.play();
         }
         
-        /*
-        Axios.post("http://localhost:8000/econfly/login", {"airlineUserEC"}).then((response) => {
-           //TODO setAllFlightInfo()
+        Axios.post("http://localhost:8000/econfly/login", {
+           "nickname":"airlineUserEC"
+        }).then((response) => {
+            console.log(response);
         })
-        */
-        console.log("logi as EconFly")
+        console.log("login as EconFly")
     }
 
     const loginAsGladlyAbroad = () => {
@@ -50,12 +49,12 @@ function Home(){
             cestovka.play();
         }
         
-        /*
-        Axios.post("http://localhost:8000/gladlyabroad/login", {"travelagencyUser"}).then((response) => {
-           //TODO setAllFlightInfo()
+        Axios.post("http://localhost:8000/gloadlyabroad/login", {
+            "nickname":"travelagencyUser"
+        }).then((response) => {
+           console.log(response);
         })
-        */
-        console.log("logi as Gadly")
+        console.log("login as Gadly")
     }
 
     const loginAsClient = () => {
@@ -63,12 +62,12 @@ function Home(){
             klient.play();
         }
         
-        /*
-        Axios.post("http://localhost:8000/gladlyabroad/login", {"generalUser"}).then((response) => {
-           //TODO setAllFlightInfo()
+        
+        Axios.post("http://localhost:8000/client/login", {
+            "nickname": "generalUser"}).then((response) => {
+           console.log(response);
         })
-        */
-        console.log("logi as Client")
+        console.log("login as Client")
     }
 
     //routes 
