@@ -53,39 +53,30 @@ function GladlyAbroad(){
 
     const getFlight = () => {
 
-        const response = Axios.get(`http://localhost:8080/getFlight?id=${flightID}`)
-        setFlightInfo([response.data]);
-        
-        //TMP
-        /*
-        let flight_info = [{
-            allPlaces: "12",
-            availablePlaces: "3",
-            dateTime: "03/07/2022",
-            flightNr: "BS000",
-            flyFrom: "KUL",
-            flyTo: "DPS"
-        }]
-        */
+        Axios.get(`http://localhost:8080/getFlight?id=${flightID}`)
+        .then((response) => {
+            console.log(response.data);
+            setFlightInfo([response.data]);
 
-        let all_places = parseInt(flightInfo[0].allPlaces);
-        let available_places = parseInt(flightInfo[0].availablePlaces);
-        setTakeSeats(all_places-available_places);
-        let seatsArray = [];
-        let tmpSeatArray = [];
-
-        // generate array with numbers to n 
-        for(let j = 1; j <= all_places; j++){
-            tmpSeatArray.push(j);
-        }
-
-        //generate 2D array for fancy render :) 
-        for(let i = 0; i <= all_places; i+=6){
-            seatsArray.push(tmpSeatArray.slice(i,i+6))
-        }
-        // setnuť aj ten jeden object ako array plz
-        setPlaneSeats(seatsArray);
-
+            let all_places = parseInt(response.data.allPlaces);
+            let available_places = parseInt(response.data.availablePlaces);
+            setTakeSeats(all_places-available_places);
+            let seatsArray = [];
+            let tmpSeatArray = [];
+    
+            // generate array with numbers to n 
+            for(let j = 1; j <= all_places; j++){
+                tmpSeatArray.push(j);
+            }
+    
+            //generate 2D array for fancy render :) 
+            for(let i = 0; i <= all_places; i+=6){
+                seatsArray.push(tmpSeatArray.slice(i,i+6))
+            }
+    
+            // setnuť aj ten jeden object ako array plz
+            setPlaneSeats(seatsArray);
+        })
     }
 
     const getAllFlights = () => {
@@ -114,7 +105,7 @@ function GladlyAbroad(){
         let passportsArray = passportsIDs.split(',');
         Axios.post('http://localhost:8080/checkIn', {
           reservationNr: reservationNr,
-          passportsIDs: passportsArray
+          passportIDs: passportsArray
       }).then((response) =>{
           console.log('Reserve seats send to backend');
           console.log(response.data);
@@ -197,7 +188,7 @@ function GladlyAbroad(){
                                 <TextField
                                     color="primary" focused 
                                     variant="outlined"
-                                    label="Flight Number"
+                                    label="Reservation number"
                                     value={reservationNr}
                                     onChange={handleReservationNr}
                                     sx={{ input: { color: 'white' }, width: 400 }}

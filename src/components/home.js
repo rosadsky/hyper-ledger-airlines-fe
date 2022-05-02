@@ -36,7 +36,7 @@ function Home(){
             aerolinia2.play();
         }
         
-        Axios.post("http://localhost:8000/econfly/login", {
+        Axios.post("http://localhost:8080/econfly/login", {
            "nickname":"airlineUserEC"
         }).then((response) => {
             console.log(response);
@@ -49,7 +49,7 @@ function Home(){
             cestovka.play();
         }
         
-        Axios.post("http://localhost:8000/gloadlyabroad/login", {
+        Axios.post("http://localhost:8080/gloadlyabroad/login", {
             "nickname":"travelagencyUser"
         }).then((response) => {
            console.log(response);
@@ -62,7 +62,7 @@ function Home(){
             klient.play();
         }
         
-        Axios.post("http://localhost:8000/client/login", {
+        Axios.post("http://localhost:8080/client/login", {
             "nickname": "generalUser"}).then((response) => {
            console.log(response);
         })

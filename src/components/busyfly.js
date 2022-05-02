@@ -56,8 +56,30 @@ function BusiFly(){
 
     const getFlight = () => {
 
-        const response = Axios.get(`http://localhost:8000/getFlight?id=${flightID}`)
-        setFlightInfo([response.data]);
+        Axios.get(`http://localhost:8080/getFlight?id=${flightID}`)
+        .then((response) => {
+            console.log(response.data);
+            setFlightInfo([response.data]);
+
+            let all_places = parseInt(response.data.allPlaces);
+            let available_places = parseInt(response.data.availablePlaces);
+            setTakeSeats(all_places-available_places);
+            let seatsArray = [];
+            let tmpSeatArray = [];
+    
+            // generate array with numbers to n 
+            for(let j = 1; j <= all_places; j++){
+                tmpSeatArray.push(j);
+            }
+    
+            //generate 2D array for fancy render :) 
+            for(let i = 0; i <= all_places; i+=6){
+                seatsArray.push(tmpSeatArray.slice(i,i+6))
+            }
+    
+            // setnuť aj ten jeden object ako array plz
+            setPlaneSeats(seatsArray);
+        })
         
         //TMP
         /*
@@ -71,35 +93,18 @@ function BusiFly(){
         }]
         */
 
-        let all_places = parseInt(flightInfo[0].allPlaces);
-        let available_places = parseInt(flightInfo[0].availablePlaces);
-        setTakeSeats(all_places-available_places);
-        let seatsArray = [];
-        let tmpSeatArray = [];
-
-        // generate array with numbers to n 
-        for(let j = 1; j <= all_places; j++){
-            tmpSeatArray.push(j);
-        }
-
-        //generate 2D array for fancy render :) 
-        for(let i = 0; i <= all_places; i+=6){
-            seatsArray.push(tmpSeatArray.slice(i,i+6))
-        }
-
-        // setnuť aj ten jeden object ako array plz
-        setPlaneSeats(seatsArray);
+       
     }
 
     const getAllFlights = () => {
-        Axios.get("http://localhost:8000/getAllFlights").then((response) => {
+        Axios.get("http://localhost:8080/getAllFlights").then((response) => {
             setAllFlightInfo(response.data);
         })  
     }
     // AIRLINE FUNCTIONS 
 
     const sendCreateFlight = () => {
-        Axios.post('http://localhost:8000/createFlight', {
+        Axios.post('http://localhost:8080/createFlight', {
           flyFrom: flyFrom,
           flyTo: flyTo,
           dateTime: dateTime,
@@ -111,7 +116,7 @@ function BusiFly(){
     }
 
     const sendBookSeats = () => {
-        Axios.post(`http://localhost:8000/bookSeats?reservationNr=${reservatinNr}`).then((response) =>{
+        Axios.post(`http://localhost:8080/bookSeats?reservationNr=${reservatinNr}`).then((response) =>{
             console.log(response);
         })
     }
